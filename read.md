@@ -1,0 +1,13 @@
+# 我的聊天助手
+- next.js、千问云模型、langchain
+- 安装next.js https://nextjs.org/docs/app/getting-started/installation#quick-start
+  - npx create-next-app@latest my-chat-bot --yes
+  - 最低 Node.js 版本：20.9    nvm use v20.19.0
+- 安装 langchain
+  - npm install langchain @langchain/core
+  - npm install @langchain/community
+- 前期准备
+  - api-key：sk-dccf9823de7b4c7b9da80ec094c8c6af
+  - name：qwen-max
+  - api：https://dashscope.aliyuncs.com/api/v2/apps/agent/{APP_ID}/compatible-mode/v1/responses
+- 'use client'; // 该指令声明了要在客户端'use client'渲染的组件的入口点，适用于创建需要客户端 JavaScript 功能的交互式用户界面 (UI)
