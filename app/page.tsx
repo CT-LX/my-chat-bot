@@ -29,70 +29,9 @@ export default function ChatPage() {
     }
   }, [input]);
 
+
+  // 使用 async/await
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || loading) return;
-
-    const userMessage: Message = { role: 'user', content: input.trim() };
-    setInput('');
-    setLoading(true);
-
-    // 先添加用户消息到状态
-    setMessages((prev) => [...prev, userMessage]);
-
-    try {
-      // 使用函数式更新确保获取最新的消息列表
-      setMessages((prev) => {
-        const allMessages = [...prev];
-
-        // 调用 API
-        fetch('/api/chat', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            messages: allMessages,
-          }),
-        })
-          .then(async (response) => {
-            const data = await response.json();
-
-            if (!response.ok) {
-              throw new Error(data.error || '请求失败');
-            }
-
-            // 添加助手回复
-            setMessages((current) => [
-              ...current,
-              { role: 'assistant', content: data.content },
-            ]);
-          })
-          .catch((err: any) => {
-            console.error(err);
-            setMessages((current) => [
-              ...current,
-              { role: 'assistant', content: `抱歉，我遇到了一些问题：${err.message || '请稍后再试'}` },
-            ]);
-          })
-          .finally(() => {
-            setLoading(false);
-          });
-
-        return prev; // 返回当前状态，不修改
-      });
-    } catch (err: any) {
-      console.error(err);
-      setMessages((prev) => [
-        ...prev,
-        { role: 'assistant', content: `抱歉，我遇到了一些问题：${err.message || '请稍后再试'}` },
-      ]);
-      setLoading(false);
-    }
-  };
-
-  // 更好的实现方式 - 使用 async/await
-  const handleSubmitFixed = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || loading) return;
 
@@ -140,7 +79,7 @@ export default function ChatPage() {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSubmitFixed(e as any);
+      handleSubmit(e as any);
     }
   };
 
@@ -183,7 +122,7 @@ export default function ChatPage() {
                       className={
                         "flex-1 break-words leading-relaxed " +
                         (msg.role === "user"
-                          ? "text-black font-sans"
+                          ? "text-white font-sans"
                           : "text-gray-800 font-sans")
                       }
                     >

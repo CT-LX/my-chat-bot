@@ -1,3 +1,5 @@
+// NextRequest 扩展了Web 请求 API
+// NextResponse 扩展了Web 响应 API
 import { NextRequest, NextResponse } from 'next/server';
 import { ChatAlibabaTongyi } from '@langchain/community/chat_models/alibaba_tongyi';
 import { HumanMessage, AIMessage } from '@langchain/core/messages';
