@@ -11,3 +11,12 @@
   - name：qwen-max
   - api：https://dashscope.aliyuncs.com/api/v2/apps/agent/{APP_ID}/compatible-mode/v1/responses
 - 'use client'; // 该指令声明了要在客户端'use client'渲染的组件的入口点，适用于创建需要客户端 JavaScript 功能的交互式用户界面 (UI)
+- LangChain 核心组件
+  - Models 模型
+    - invoke:调用模型的最直接方法是使用invoke()单个消息或消息列表。
+  - Messages 消息对象
+    - HumanMessage 用户消息
+    - AIMessage AI消息
+    - SystemMessage 系统消息
+  - Tools
+  - 

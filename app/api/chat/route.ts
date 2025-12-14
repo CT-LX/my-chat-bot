@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ChatAlibabaTongyi } from '@langchain/community/chat_models/alibaba_tongyi';
 import { HumanMessage, AIMessage } from '@langchain/core/messages';
 
+
 export async function POST(request: NextRequest) {
   try {
     const { messages } = await request.json();
@@ -17,7 +18,7 @@ export async function POST(request: NextRequest) {
     const apiKey = process.env.ALIBABA_API_KEY;
     if (!apiKey) {
       return NextResponse.json(
-        { error: 'API Key 未配置，请在环境变量中设置 ALIBABA_API_KEY' },
+        { error: 'API Key 未配置，请设置 ALIBABA_API_KEY' },
         { status: 500 }
       );
     }
@@ -28,6 +29,7 @@ export async function POST(request: NextRequest) {
       temperature: 0.7,
       alibabaApiKey: apiKey,
     });
+
 
     // 构建消息历史（转换为 LangChain 消息格式）
     const langchainMessages = messages.map((msg: { role: string; content: string }) => {

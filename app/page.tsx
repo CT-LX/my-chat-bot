@@ -34,7 +34,6 @@ export default function ChatPage() {
     if (!input.trim() || loading) return;
 
     const userMessage: Message = { role: 'user', content: input.trim() };
-    // const userInput = input.trim();
     setInput('');
     setLoading(true);
 
@@ -98,7 +97,6 @@ export default function ChatPage() {
     if (!input.trim() || loading) return;
 
     const userMessage: Message = { role: 'user', content: input.trim() };
-    // const userInput = input.trim();
     setInput('');
 
     // 立即添加用户消息
