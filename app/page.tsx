@@ -161,6 +161,7 @@ export default function ChatPage() {
             <div className="flex-1 relative">
               <textarea
                 ref={inputRef}
+                autoFocus
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}

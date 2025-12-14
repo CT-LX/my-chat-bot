@@ -5,6 +5,11 @@ import { ChatAlibabaTongyi } from '@langchain/community/chat_models/alibaba_tong
 import { HumanMessage, AIMessage } from '@langchain/core/messages';
 
 
+interface MessageIntf {
+  role: string // 角色
+  content: string // 消息内容
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { messages } = await request.json();
@@ -27,14 +32,14 @@ export async function POST(request: NextRequest) {
 
     // 初始化千问模型
     const model = new ChatAlibabaTongyi({
-      model: 'qwen-max',
+      model: 'qwen-plus', // qwen-plus qwen-max
       temperature: 0.7,
       alibabaApiKey: apiKey,
     });
 
 
     // 构建消息历史（转换为 LangChain 消息格式）
-    const langchainMessages = messages.map((msg: { role: string; content: string }) => {
+    const langchainMessages = messages.map((msg: MessageIntf) => {
       if (msg.role === 'user') {
         return new HumanMessage(msg.content);
       } else if (msg.role === 'assistant') {
