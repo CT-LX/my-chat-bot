@@ -18,5 +18,5 @@
     - HumanMessage 用户消息
     - AIMessage AI消息
     - SystemMessage 系统消息
-  - Tools
-  - 
+  - Agent:智能体将语言模型与工具相结合，创建能够对任务进行推理
+  - Tools:工具扩展了代理的功能——使它们能够获取实时数据、执行代码、查询外部数据库并在现实世界中采取行动
